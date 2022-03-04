@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.yn_1.demo2_volleyproject.R;
 
 /**
@@ -13,8 +14,8 @@ import com.yn_1.demo2_volleyproject.R;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    EditText username;
-    EditText password;
+    EditText usernameInputView;
+    EditText passwordInputView;
     Button login;
     Button createAccount;
 
@@ -24,10 +25,22 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        username = findViewById(R.id.inputUsername);
-        password = findViewById(R.id.inputPassword);
+        usernameInputView = findViewById(R.id.inputUsername);
+        passwordInputView = findViewById(R.id.inputPassword);
         login = findViewById(R.id.login);
         createAccount = findViewById(R.id.createAccount);
+
+        login.setOnClickListener(v -> {
+            String username = usernameInputView.getText().toString();
+            String password = passwordInputView.getText().toString();
+            //todo: correct URL in next line
+            //todo: setup next line as we determine we should
+            //userRequester.getRequest("getUser", accountCredentialsJson, command, null, null)
+        });
+
+        createAccount.setOnClickListener(v -> {
+            //todo: go to create account activity
+        });
 
     }
 

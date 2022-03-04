@@ -37,19 +37,16 @@ public class RoundTripActivity extends AppCompatActivity {
         populateLibrary();
 
         //Book search
-        stringInput = (EditText) findViewById(R.id.searchBookTitle);
+        stringInput = findViewById(R.id.searchBookTitle);
         stringInput.setHint("Input book isbn...");
-        showSearched = (TextView) findViewById(R.id.showSearched);
-        selectedBook = (TextView) findViewById(R.id.selectedBook);
-        submitSearchButton = (Button) findViewById(R.id.submitSearch);
+        showSearched = findViewById(R.id.showSearched);
+        selectedBook = findViewById(R.id.selectedBook);
+        submitSearchButton = findViewById(R.id.submitSearch);
         submitSearchButton.setText("Submit");
-        submitSearchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                searchedIsbn = stringInput.getText().toString();
-                showSearched.setText("Searched for " + searchedIsbn + "!");
-                searchLibrary(searchedIsbn);
-            }
+        submitSearchButton.setOnClickListener(v -> {
+            searchedIsbn = stringInput.getText().toString();
+            showSearched.setText("Searched for " + searchedIsbn + "!");
+            searchLibrary(searchedIsbn);
         });
 
     }
