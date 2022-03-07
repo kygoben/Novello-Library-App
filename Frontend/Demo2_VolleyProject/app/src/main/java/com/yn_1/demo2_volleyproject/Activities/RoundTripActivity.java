@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.yn_1.demo2_volleyproject.Book;
 import com.yn_1.demo2_volleyproject.Const;
+import com.yn_1.demo2_volleyproject.NullCommand;
 import com.yn_1.demo2_volleyproject.R;
 import com.yn_1.demo2_volleyproject.VolleyCommand;
 import com.yn_1.demo2_volleyproject.VolleyRequesters.JsonObjectRequester;
@@ -57,7 +58,7 @@ public class RoundTripActivity extends AppCompatActivity {
     private void populateLibrary() {
 
         JsonObjectRequester titleAddRequester = new JsonObjectRequester();
-        JsonObjectCommand command = new JsonObjectCommand();
+        NullCommand command = new NullCommand();
         //to postman
 //        titleAddRequester.postRequest("library/0000000000001", null, command, null, null);
         //to backend
