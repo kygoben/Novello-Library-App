@@ -96,6 +96,10 @@ public class RoundTripActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Changes text depending on whether book found or not
+     * @param command is the result of the get request
+     */
     private void searchResult(JsonObjectCommand command) {
 
         Book book = null;
@@ -136,6 +140,9 @@ public class RoundTripActivity extends AppCompatActivity {
         }, null, null);
     }
 
+    /**
+     * Class used to get result of request
+     */
     private class JsonObjectCommand implements VolleyCommand<JSONObject> {
 
         String title = null;
