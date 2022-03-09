@@ -4,9 +4,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.yn_1.demo2_volleyproject.NullCommand;
 import com.yn_1.demo2_volleyproject.R;
@@ -20,10 +23,12 @@ import org.json.JSONObject;
  */
 public class CreateAccountActivity extends AppCompatActivity {
 
+    ConstraintLayout constraintLayout;
     EditText usernameInput;
     EditText passwordInput;
     EditText passwordConfirmInput;
     Button createAccount;
+    TextView warning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +36,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
 
+        constraintLayout = findViewById(R.id.constraintLayout);
         usernameInput = findViewById(R.id.username);
         passwordInput = findViewById(R.id.password);
         passwordConfirmInput = findViewById(R.id.confirmPassword);
@@ -54,8 +60,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                 userAddRequester.postRequest("addUser", userJson, command, null, null);
             }
             else {
-                createAccount.setText("Passwords do not match!");
-                createAccount.setBackgroundColor(Color.RED);
+                warning = findViewById(R.id.warning);
+                warning.setText("Passwords do not match!");
+                warning.setBackgroundColor(Color.RED);
             }
         });
 

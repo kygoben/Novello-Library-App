@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             //todo: correct URL in next line
-            userRequester.getRequest("getUser", accountCredentialsJson, command, null, null);
+            userRequester.postRequest("getUser", accountCredentialsJson, command, null, null);
         });
 
         createAccount.setOnClickListener(v -> {
