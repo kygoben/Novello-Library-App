@@ -1,5 +1,6 @@
 package com.yn_1.NovelloApp.Activities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.android.volley.VolleyError;
 import com.yn_1.NovelloApp.R;
 import com.yn_1.NovelloApp.VolleyCommand;
 import com.yn_1.NovelloApp.VolleyRequesters.JsonObjectRequester;
@@ -27,7 +29,6 @@ public class CreateAccountActivity extends AppCompatActivity {
     EditText passwordInput;
     EditText passwordConfirmInput;
     Button createAccount;
-    TextView warning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         createAccount.setOnClickListener(v -> {
             JsonObjectRequester userAddRequester = new JsonObjectRequester();
+            JsonObjectCommand command = new JsonObjectCommand();
             String username = usernameInput.getText().toString();
             String password = passwordInput.getText().toString();
             String passwordConfirmation = passwordConfirmInput.getText().toString();
@@ -55,8 +57,7 @@ public class CreateAccountActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
                 //todo: correct URL in next line
-                userAddRequester.postRequest("addUser", userJson, null, null, null);
-                //todo: upon successful account creation go to login screen and give alert that created successfully
+                userAddRequester.postRequest("addUser", userJson, command, null, null);
             }
             else {
                 AlertDialog.Builder alert = new AlertDialog.Builder(this);
@@ -64,6 +65,37 @@ public class CreateAccountActivity extends AppCompatActivity {
                 alert.show();
             }
         });
+
+    }
+
+    void accountCreationResult(boolean success) {
+
+        if (success) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+        else {
+            AlertDialog.Builder alert = new AlertDialog.Builder(this);
+            alert.setMessage("Account not created for an unknown reason!");
+            alert.show();
+        }
+
+    }
+
+    /**
+     * Class used to get result of request
+     */
+    private class JsonObjectCommand implements VolleyCommand<JSONObject> {
+
+        @Override
+        public void execute(JSONObject data) {
+            accountCreationResult(data != null);
+        }
+
+        @Override
+        public void onError(VolleyError error) {
+
+        }
 
     }
 
