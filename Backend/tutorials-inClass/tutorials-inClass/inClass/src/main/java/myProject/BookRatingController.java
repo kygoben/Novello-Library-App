@@ -16,8 +16,8 @@ public class BookRatingController {
     PersonDB pdb;
     @PostMapping("/addRating/{bid}/{pid}")
     BookRating creatBookRating(@PathVariable Integer bid, @PathVariable Integer pid, @RequestBody BookRating br) {
-        br.setBook(bdb.findById(bid).orElseThrow());
-        br.setPerson(pdb.findById(pid).orElseThrow());
+//        br.setBook(bdb.findById(bid).orElseThrow());
+//        br.setPerson(pdb.findById(pid).orElseThrow());
 
         BookRatingKey brk = new BookRatingKey();
         brk.setBookId(bid);
@@ -29,8 +29,6 @@ public class BookRatingController {
     }
     @PutMapping("/addReview/{bid}/{pid}")
     BookRating creatReview(@PathVariable Integer bid, @PathVariable Integer pid, @RequestBody BookRating br) {
-       // br.setBook(bdb.findById(bid).orElseThrow());
-        //br.setPerson(pdb.findById(pid).orElseThrow());
 
         BookRatingKey brk = new BookRatingKey();
         brk.setBookId(bid);
