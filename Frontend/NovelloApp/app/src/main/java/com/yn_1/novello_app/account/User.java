@@ -13,13 +13,13 @@ public interface User {
 
     void setUsername(String username);
     void setPassword(String password);
-    void setAccountType(UserType type);
+    void setUserType(UserType type);
 
 
     int getUserId();
     String getUsername();
     String getPassword();
-    UserType getAccountType();
+    UserType getUserType();
     List<User> getFriends();
     List<Book> getLibrary();
     String getUserUrlPath();

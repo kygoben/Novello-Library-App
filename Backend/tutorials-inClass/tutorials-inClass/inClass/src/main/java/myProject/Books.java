@@ -1,6 +1,7 @@
 package myProject;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 class Books {
@@ -30,7 +31,8 @@ class Books {
         @Column
         String genre;
 
-
+        @OneToMany(mappedBy = "book")
+        Set<BookRating> ratings;
 
     public Integer getBookID() {
         return bookID;
