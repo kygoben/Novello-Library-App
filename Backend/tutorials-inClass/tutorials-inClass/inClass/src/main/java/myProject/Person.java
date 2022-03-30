@@ -8,10 +8,13 @@ class Person {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	Integer id;
 
-	@Column
-	String name;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "Person_Info_id",referencedColumnName = "id")
+	PersonInfo personInfo;
+
 
 	@Column
 	Integer accountType;
@@ -28,11 +31,6 @@ class Person {
 	@Column
 	String securityAnswer;
 
-	@Column
-	String email;
-
-	@Column
-	Integer age;
 
 	@OneToMany(mappedBy = "person")
 	Set<BookRating> ratings;
@@ -68,14 +66,8 @@ class Person {
 	public Integer getId() { return id; }
 	public void setId(Integer id){ this.id = id; }
 
-	public String getName() { return name; }
-    public void setName(String name){ this.name = name; }
-
 	public Integer getAccountType() { return accountType; }
     public void setAccountType(Integer accountType) { this.accountType = accountType;}
-
-    public Integer getAge() { return age; }
-    public void setAge(Integer age) { this.age = age; }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
@@ -89,6 +81,5 @@ class Person {
     public String getSecurityAnswer() { return securityAnswer; }
     public void setSecurityAnswer(String securityAnswer) { this.securityAnswer = securityAnswer; }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+
 }
