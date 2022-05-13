@@ -4,13 +4,6 @@
 ## Description
 A library hub app for book recommendations, reviews, shopping, and communication, and collections.
 
-
-## Dependencies
-
-
-## Installation  
-
-
 ## Contributors 
 * Roba Abbajabal    (robaa@iastate.edu)
 * Kyle Geerts       (kgeerts@iastate.edu)
